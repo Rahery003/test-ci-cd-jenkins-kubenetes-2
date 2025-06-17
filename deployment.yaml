@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name: react-test
   labels:
-    app: react1
+    app: reacttest
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: react1
+      app: reacttest
   template:
     metadata:
       labels:
@@ -23,12 +23,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: react-service
+  name: react-service-test
   labels:
-    app: react1
+    app: reacttest
 spec:
   selector:
-    app: react1
+    app: reacttest
   ports:
     - port: 80
       targetPort: 80
