@@ -39,7 +39,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'kubeconfig-id', variable: 'KUBECONFIG_FILE')]) {
                     sh '''
                     export KUBECONFIG=$KUBECONFIG_FILE
-                    sed "s|IMAGE_PLACEHOLDER|$IMAGE_TAG|g" deployment2.yaml | kubectl apply -f -
+                    kubectl apply -f deployment2.yaml
                     kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/calico.yaml
                     '''
                 }
