@@ -40,6 +40,7 @@ pipeline {
                     sh '''
                     export KUBECONFIG=$KUBECONFIG_FILE
                     sed "s|IMAGE_PLACEHOLDER|$IMAGE_TAG|g" deployment.yaml | kubectl apply -f -
+                    kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/calico.yaml
                     '''
                 }
             }
