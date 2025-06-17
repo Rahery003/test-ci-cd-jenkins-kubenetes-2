@@ -1,1 +1,35 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-test
+  labels:
+    app: reacttest
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reacttest
+  template:
+    metadata:
+      labels:
+        app: react
+    spec:
+      containers:
+      - name: react-test-container
+        image: andrianasolo/react-test:latest  # remplacé par Jenkins (placeholder gardé ci-dessous)
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-service-test
+  labels:
+    app: reacttest
+spec:
+  selector:
+    app: reacttest
+  ports:
+    - port: 80
+      targetPort: 80
+  type: NodePort
